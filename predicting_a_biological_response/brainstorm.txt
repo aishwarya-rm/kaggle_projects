@@ -1,0 +1,5 @@
+Use k-means as an algorithm to train. Cluster based on the most complex center choosing and distance calculating mechanism. 
+
+- CSE 446 assignment 4, this can be optimized though. 
+- Check for accuracy, then optimize. 
+- Develop a dev set. 
