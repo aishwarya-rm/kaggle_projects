@@ -3,3 +3,5 @@ Use k-means as an algorithm to train. Cluster based on the most complex center c
 - CSE 446 assignment 4, this can be optimized though. 
 - Check for accuracy, then optimize. 
 - Develop a dev set. 
+
+Doing it in python because I can read csv files better there.
