@@ -44,7 +44,7 @@ def recalculate_centers(clusters):
 				s = pt['vals']
 			else:
 				s = vect_add(s, pt['vals'])
-		mean = vect_avs(s, len(c))
+		mean = vect_avg(s, len(c))
 		centers.append(mean)
 	return centers
 
@@ -62,3 +62,41 @@ def train_kmean(data_set, centers, iter_limit):
 		if clusters == old:
 			break
 	return centers, clusters, num_iterations
+
+#Within group sum of squares
+def within_group_ss(cluster, center):
+    """
+    For each cluter, compute the sum of squares of euclidean distance
+    from each data point in the cluster to the empirical mean of this cluster.
+    Please note that the euclidean distance is squared in this function.
+
+    Args:
+        cluster: a list of data points.
+        center: the center for the given cluster.
+
+    Returns:
+        ss: a number, the within cluster sum of squares.
+    """
+    ss = 0.0
+    for pt in cluster:
+        ss += pow(dist(pt['vals'], center), 2)
+    return ss
+
+
+def sum_of_within_group_ss(clusters, centers):
+    """
+    For total of k clusters, compute the sum of all k within_group_ss(cluster).
+
+    Args:
+        clusters: a list of clusters.
+        centers: a list of centers of the given clusters.
+
+    Returns:
+        sss: a number, the sum of within cluster sum of squares for all clusters.
+    """
+    sss = 0.0
+    for i in range(len(centers)):
+        c = clusters[i]
+        center = centers[i]
+        sss += within_group_ss(c, center)
+    return sss
